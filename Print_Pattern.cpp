@@ -1,5 +1,7 @@
 /*
 
+Problem link: https://www.geeksforgeeks.org/problems/print-pattern3549/1
+
 
 Print a sequence of numbers starting with N, without using loop, where replace N with N - 5, until N > 0. After that replace N with N + 5 until N regains its initial value.
 
@@ -33,6 +35,7 @@ Topic Tags: pattern-printing, Recursion, Algorithms
 
 */
 
+Solution 1: 
 
 class Solution{
 public:
@@ -75,5 +78,50 @@ public:
         increase(vect, n+5, N);
     }
 };
+
+Solution: 
+
+
+class Solution{
+public:
+
+    vector<int> pattern(int N){
+        
+        vector<int> vect;
+        
+        if(N<=0)
+            vect.push_back(N);
+        
+        else
+        {
+            vect.push_back(N);
+            int flag = 0;
+            solution(vect, N-5, N, flag);
+        }
+        
+        return vect;
+        
+    }
+    
+    void solution(vector<int> &vect, int n, int N, int flag)
+    {
+        vect.push_back(n);
+        
+        if(n==N)
+            return;
+            
+            
+        if(n>0 && !flag)
+            solution(vect, n-5, N, flag);
+        else if(n<=0 && !flag)
+        {
+            flag = 1;
+            solution(vect, n+5, N, flag);
+        }
+        else
+            solution(vect, n+5, N, flag);
+            
+    }
+ 
 
 
