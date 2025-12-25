@@ -1,38 +1,53 @@
+/*
+Problem link - https://cses.fi/problemset/task/1068
+
+Weird Algorithm
+
+Consider an algorithm that takes as input a positive integer n. If n is even, the algorithm divides it by two, and if n is odd, the algorithm multiplies it by three and adds one. The algorithm repeats this, until n is one. For example, the sequence for n=3 is as follows:
+3->10->5->16->8->4->2->1
+Your task is to simulate the execution of the algorithm for a given value of n.
+
+Input
+The only input line contains an integer n.
+
+Output
+Print a line that contains all values of n during the algorithm.
+Constraints
+
+1 <= n <= 10^6
+
+Example
+Input:
+3
+
+Output:
+3 10 5 16 8 4 2 1
+*/
+
+//Solution
 import java.io.*;
 import java.util.*;
 
 public class weirdAlgorithm {
     public static void main(String[] args) throws IOException {
-        // Step 1: Initialize Fast I/O
-        // BufferedReader + StringTokenizer is much faster than Scanner
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st = new StringTokenizer(br.readLine());
-        
-        // Step 2: Use PrintWriter for buffered output
-        PrintWriter out = new PrintWriter(new BufferedWriter(new OutputStreamWriter(System.out)));
 
-        // Use long to prevent overflow (3n + 1 can exceed 2*10^9)
+        PrintWriter out = new PrintWriter(new BufferedWriter(new OutputStreamWriter(System.out)));
         long n = Long.parseLong(st.nextToken());
 
-        // Step 3: Use StringBuilder to accumulate the sequence
-        // This prevents the overhead of many small I/O calls
         StringBuilder sb = new StringBuilder();
         sb.append(n);
 
-        while (n != 1) {
-            // Bitwise operations are faster than % and /
-            if ((n & 1) == 0) {
-                n >>= 1; // Equivalent to n / 2
-            } else {
-                n = n * 3 + 1;
-            }
+        while(n!=1) {
+            if((n&1)==0)
+                n >>= 1;
+            else
+                n = n*3+1;
             sb.append(" ").append(n);
         }
-
-        // Final output
         out.println(sb.toString());
-        
-        // Critical: You must close/flush the PrintWriter
+
         out.flush();
         out.close();
     }
