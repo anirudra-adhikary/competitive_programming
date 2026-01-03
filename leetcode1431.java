@@ -55,30 +55,21 @@ class Solution {
     }
 }
 
-// Solution 2 - Dutch National Flag Algorithm
+//Solution 2 
 class Solution {
-    public void sort012(int[] arr) {
-        
-        int low = 0;
-        int mid = 0;
-        int high = arr.length - 1;
-        
-        while(mid <= high)
-        {
-            int temp = arr[mid];
-            
-            if(temp == 0)
-            {
-                arr[mid++] = arr[low];
-                arr[low++] = temp;
-            }
-            else if(temp == 1)
-                mid++;
-            else
-            {
-                arr[mid] = arr[high];
-                arr[high--] = temp;
-            }
-        }
+    public List<Boolean> kidsWithCandies(int[] candies, int extraCandi  es) {
+        int maxCandy = 0;
+        for(int item : candies)
+            if(item > maxCandy)
+                maxCandy = item;
+
+        int threshold = maxCandy - extraCandies;
+
+        List<Boolean> ans = new ArrayList<>(candies.length);
+
+        for(int item : candies)
+            ans.add(item >= threshold);
+
+        return ans;
     }
 }
