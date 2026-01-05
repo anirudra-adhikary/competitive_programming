@@ -1,5 +1,5 @@
 /*
-Problem link - 
+Problem link - https://www.geeksforgeeks.org/problems/max-xor-subarray-of-size-k/1
 
 Max Xor Subarray of size K
 Difficulty: Medium
@@ -33,7 +33,8 @@ Auxiliary Space: O(1)
 class Solution {
     public int maxSubarrayXOR(int[] arr, int k) {
         int maxXor = 0;
-        
+        Max Xor Subarray of size K
+
         for(int i=0;i<k;i++)
             maxXor ^= arr[i];
         
