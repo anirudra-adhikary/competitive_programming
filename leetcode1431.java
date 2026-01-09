@@ -57,7 +57,7 @@ class Solution {
 
 //Solution 2 
 class Solution {
-    public List<Boolean> kidsWithCandies(int[] candies, int extraCandi  es) {
+    public List<Boolean> kidsWithCandies(int[] candies, int extraCandies) {
         int maxCandy = 0;
         for(int item : candies)
             if(item > maxCandy)
