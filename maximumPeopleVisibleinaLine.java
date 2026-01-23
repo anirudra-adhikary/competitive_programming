@@ -37,3 +37,51 @@ Expected Complexities
 Time Complexity: O(n)
 Auxiliary Space: O(n)
 */
+
+class Solution {
+    public int maxPeople(int[] arr) {
+        // code here
+        int n = arr.length;
+        
+        Deque<Integer> leftStack = new ArrayDeque<>();
+        Deque<Integer> rightStack = new ArrayDeque<>();
+        
+        int[] left = new int[n];
+        int[] right = new int[n];
+        
+        for(int i = 0; i < n; i++)
+        {
+            while(!leftStack.isEmpty() && arr[i]>arr[leftStack.peek()])
+                leftStack.pop();
+            
+            if(leftStack.isEmpty())
+                left[i] = -1;
+            else
+                left[i] = leftStack.peek();
+                
+            leftStack.push(i);
+        }
+        
+        
+        for(int i = n - 1; i >= 0; i--)
+        {
+            while(!rightStack.isEmpty() && arr[i] > arr[rightStack.peek()])
+                rightStack.pop();
+            
+            if(rightStack.isEmpty())
+                right[i] = n;
+            else
+                right[i] = rightStack.peek();
+                
+            rightStack.push(i);
+        }
+        
+        int maxPerson = Integer.MIN_VALUE;
+        
+        for(int i = 0; i < n; i++)
+            maxPerson = Math.max(maxPerson, right[i] - left[i] - 1);
+            
+        return maxPerson;
+        
+    }
+}
